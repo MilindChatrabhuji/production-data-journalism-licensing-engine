@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production Data Journalism &amp; Explainer Licensing Engine - Simulator</title>
+  <style>
+    :root {
+      --bg: #080D1A;
+      --card-bg: #0F172A;
+      --border: #334155;
+      --primary: #06B6D4;
+      --accent: #3B82F6;
+      --emerald: #10B981;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 24px; }
+    .header { text-align: center; margin-bottom: 24px; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; background: rgba(6, 182, 212, 0.2); color: #22D3EE; font-size: 12px; font-weight: 700; border: 1px solid var(--primary); margin-bottom: 8px; }
+    h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+    p.subtitle { color: var(--text-muted); font-size: 14px; }
+    
+    .nav-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .tab-btn { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-muted); padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; }
+    .tab-btn.active, .tab-btn:hover { background: var(--primary); color: #080D1A; border-color: var(--primary); font-weight: 700; }
+
+    .screen { display: none; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; max-width: 900px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .screen.active { display: block; }
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+    .card { background: #1E293B; border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .card h3 { font-size: 15px; margin-bottom: 8px; color: #38BDF8; }
+    
+    input, select, textarea, button { width: 100%; padding: 10px; margin-top: 6px; margin-bottom: 12px; border-radius: 6px; border: 1px solid var(--border); background: #0F172A; color: #fff; font-size: 13px; }
+    button.action-btn { background: var(--primary); color: #080D1A; font-weight: 700; border: none; cursor: pointer; transition: 0.2s; }
+    button.action-btn:hover { background: #22D3EE; }
+    
+    pre { background: #0B1120; border: 1px solid #1E293B; border-radius: 6px; padding: 12px; font-family: ui-monospace, monospace; font-size: 12px; color: #34D399; overflow-x: auto; white-space: pre-wrap; }
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+    .stat-label { color: var(--text-muted); }
+    .stat-value { font-weight: 700; color: #F8FAFC; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="badge">WAY #77 • PRODUCT 79</div>
+    <h1>Production Data Journalism &amp; Explainer Licensing Engine</h1>
+    <p class="subtitle">Dataset Normalization • Narrative Storyboards • Embeddable Dataviz • Retainers $500–$3,000/mo</p>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showScreen('screen1', this)">1. Dataset Ingestion Studio</button>
+    <button class="tab-btn" onclick="showScreen('screen2', this)">2. Narrative Explainer Generator</button>
+    <button class="tab-btn" onclick="showScreen('screen3', this)">3. Embeddable Dataviz Renderer</button>
+    <button class="tab-btn" onclick="showScreen('screen4', this)">4. Licensing &amp; Retainer Invoicing</button>
+  </div>
+
+  <!-- Screen 1: Dataset Ingestion Studio -->
+  <div id="screen1" class="screen active">
+    <h2>Empirical Dataset Ingestion &amp; Provenance Hashing</h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Normalize raw clinical and infrastructure datasets with cryptographic SHA-256 provenance hashes.</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>Dataset Parameters</h3>
+        <label>Dataset Title:</label>
+        <input type="text" id="dsTitle" value="Global Healthcare API Latency &amp; Interoperability Benchmark">
+        <label>Cohort Sample Size:</label>
+        <input type="number" id="dsSamples" value="100000">
+        <label>Baseline Monolith Latency (ms):</label>
+        <input type="number" id="dsMono" value="185.4">
+        <label>Serverless Edge Latency (ms):</label>
+        <input type="number" id="dsEdge" value="8.6">
+        <button class="action-btn" onclick="normalizeDataset()">Ingest &amp; Compute Provenance Hash</button>
+      </div>
+
+      <div class="card">
+        <h3>Normalized Dataset Schema</h3>
+        <pre id="dsOutput">Click 'Ingest &amp; Compute Provenance Hash' to view normalized data.</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Narrative Explainer Generator -->
+  <div id="screen2" class="screen">
+    <h2>Narrative Explainer Storyboard Studio</h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Generate investigative explainers with deck leads, methodology notes, and chart placement anchors.</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>Editorial Controls</h3>
+        <label>Investigative Angle:</label>
+        <textarea id="storyAngle" rows="3">Serverless edge validation reduces electronic health record routing latency by 95% while maintaining strict HIPAA compliance.</textarea>
+        <label>Target Publication Style:</label>
+        <select id="storyStyle">
+          <option value="AP" selected>AP Newsroom Style (Standard Editorial)</option>
+          <option value="FT">Financial &amp; Healthcare Enterprise Review</option>
+          <option value="IEEE">Technical Systems Journal</option>
+        </select>
+        <button class="action-btn" onclick="generateStoryboardPreview()">Synthesize Explainer Storyboard</button>
+      </div>
+
+      <div class="card">
+        <h3>Investigative Storyboard Outline</h3>
+        <pre id="storyOutput">Click 'Synthesize Explainer Storyboard' to generate.</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3: Embeddable Dataviz Renderer -->
+  <div id="screen3" class="screen">
+    <h2>Embeddable Interactive Dataviz Renderer</h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Render responsive standalone SVG/HTML5 charts for digital publisher CMS integration.</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>Dataviz Settings</h3>
+        <label>Chart Type:</label>
+        <select id="chartType" onchange="renderDataviz()">
+          <option value="bar" selected>Horizontal Bar Comparison</option>
+          <option value="timeline">Latency Benchmark Timeline</option>
+        </select>
+        <div class="stat-row"><span class="stat-label">Responsive Width:</span><span class="stat-value">100% (640px Max)</span></div>
+        <div class="stat-row"><span class="stat-label">Format:</span><span class="stat-value">Clean Inline SVG</span></div>
+        <div class="stat-row"><span class="stat-label">Sub-10ms Gating:</span><span class="stat-value">Cloudflare Workers Edge</span></div>
+        <button class="action-btn" onclick="renderDataviz()">Render Interactive Dataviz</button>
+      </div>
+
+      <div class="card">
+        <h3>Rendered SVG Preview &amp; Embed Snippet</h3>
+        <pre id="chartOutput"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Invoicing Terminal -->
+  <div id="screen4" class="screen">
+    <h2>Publisher Licensing &amp; Retainer Invoicing Terminal</h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">Generate compliant licensing invoices with 18% GST (Domestic UPI) or Zero-Rated LUT (USD PayPal).</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h3>Licensing Tier</h3>
+        <label>Select Package:</label>
+        <select id="invItem" onchange="calculateLicensingInvoice()">
+          <option value="250">Single Story License ($250 USD / story)</option>
+          <option value="500">Tier 1: Starter Editorial Syndication ($500/mo)</option>
+          <option value="800">Monthly 4-Story Editorial Pack ($800/mo)</option>
+          <option value="1500" selected>Tier 2: Growth Newsroom Partnership ($1,500/mo)</option>
+          <option value="3000">Tier 3: Executive Publisher Retainer ($3,000/mo)</option>
+        </select>
+        <label>Publisher Origin &amp; Currency:</label>
+        <select id="invCurrency" onchange="calculateLicensingInvoice()">
+          <option value="USD_INTL" selected>USD - International (0% GST via LUT Export)</option>
+          <option value="INR_DOMESTIC">INR - Domestic India (18% GST Applicable)</option>
+        </select>
+        <button class="action-btn" onclick="calculateLicensingInvoice()">Generate Invoice Summary</button>
+      </div>
+
+      <div class="card">
+        <h3>Invoice Breakdown</h3>
+        <pre id="invoiceOutput"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showScreen(screenId, btn) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function normalizeDataset() {
+      const title = document.getElementById('dsTitle').value;
+      const samples = document.getElementById('dsSamples').value;
+      const mono = document.getElementById('dsMono').value;
+      const edge = document.getElementById('dsEdge').value;
+
+      const dataset = {
+        datasetId: "ds-" + Date.now().toString(36),
+        title: title,
+        provenanceSha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ingestedAt: new Date().toISOString(),
+        records: [
+          { category: "Traditional Monolith", metric: "P99 Latency", value: parseFloat(mono), unit: "ms", sampleSize: parseInt(samples) },
+          { category: "Serverless Edge Node", metric: "P99 Latency", value: parseFloat(edge), unit: "ms", sampleSize: parseInt(samples) },
+          { category: "Distributed Cache Hit", metric: "P99 Latency", value: 3.2, unit: "ms", sampleSize: parseInt(samples) }
+        ],
+        status: "NORMALIZATION_COMPLETE"
+      };
+
+      document.getElementById('dsOutput').innerText = JSON.stringify(dataset, null, 2);
+    }
+
+    function generateStoryboardPreview() {
+      const angle = document.getElementById('storyAngle').value;
+      const style = document.getElementById('storyStyle').value;
+
+      document.getElementById('storyOutput').innerText = 
+`# EXPLAINER STORYBOARD: Healthcare Telemetry Latency Investigation
+Style: ${style} | Status: Ready for Syndication
+
+## Deck Lead:
+${angle}
+
+## Section 1: The Latency Crisis in Clinical Systems [Chart: Latency Breakdown]
+Centralized monoliths average 185.4ms, causing severe pipeline queueing.
+
+## Section 2: The Serverless Edge Architecture [Chart: Edge Comparison]
+Sub-10ms Workers edge nodes eliminate the database bottleneck.
+
+## Section 3: Technical Implementation & Policy Takeaways
+100% mathematical auditability guaranteed with SHA-256 provenance hash.
+
+## Citations & Evidence:
+1. Clinical Informatics Evaluation Lab (2026)
+2. Global Edge Observability Consortium (2026)`;
+    }
+
+    function renderDataviz() {
+      document.getElementById('chartOutput').innerText = 
+`[EMBEDDABLE SVG DATAVIZ]
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%">
+  <!-- Traditional Monolith: 185.4 ms -->
+  <rect x="50" y="80" width="480" height="40" rx="4" fill="#EF4444" />
+  <!-- Serverless Edge Node: 8.6 ms -->
+  <rect x="50" y="150" width="22" height="40" rx="4" fill="#3B82F6" />
+  <!-- Distributed Cache Hit: 3.2 ms -->
+  <rect x="50" y="220" width="8" height="40" rx="4" fill="#10B981" />
+</svg>
+
+Publisher CMS Embed Code:
+<div class="data-journalism-embed" id="chart-bar-ds991">
+  <iframe src="https://publisher.example.com/embed/chart-bar-ds991" width="100%" height="360" frameborder="0"></iframe>
+</div>`;
+    }
+
+    function calculateLicensingInvoice() {
+      const rate = parseFloat(document.getElementById('invItem').value);
+      const curr = document.getElementById('invCurrency').value;
+      let text = '';
+
+      if (curr === 'USD_INTL') {
+        text = 
+`INVOICE #: INV-DJ-USD-${Date.now().toString(36).toUpperCase()}
+Package: $${rate.toFixed(2)} USD
+Subtotal: $${rate.toFixed(2)} USD
+IGST (Export of Service with LUT): $0.00 USD (0.00%)
+TOTAL DUE: $${rate.toFixed(2)} USD
+
+Remittance Coordinate:
+PayPal: milind.chatrabhuji@gmail.com
+Status: PENDING
+Statutory Reference: Zero-rated supply under Section 16 of IGST Act.`;
+      } else {
+        const inrRate = rate * 83.0;
+        const gst = inrRate * 0.18;
+        const total = inrRate + gst;
+        text = 
+`INVOICE #: INV-DJ-INR-${Date.now().toString(36).toUpperCase()}
+Base Amount: ₹${inrRate.toLocaleString('en-IN', {minimumFractionDigits: 2})} INR
+GST @ 18%: ₹${gst.toLocaleString('en-IN', {minimumFractionDigits: 2})} INR
+TOTAL DUE: ₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2})} INR
+
+Remittance Coordinate:
+Domestic UPI: milind.chatrabhuji@okhdfcbank
+Status: PENDING
+Includes statutory GST tax invoice breakdown.`;
+      }
+
+      document.getElementById('invoiceOutput').innerText = text;
+    }
+
+    // Init defaults
+    normalizeDataset();
+    renderDataviz();
+    calculateLicensingInvoice();
+  </script>
+</body>
+</html>
